@@ -10,7 +10,7 @@ words = [
     ["Word5-V1", "Word5-V2","Word5-V3", ""]
     ]
     
-# this actually works too
+# function to actually generate the wordlist based on words as input
 
 def gen_wordlist(wordlist):
     
@@ -23,8 +23,9 @@ def gen_wordlist(wordlist):
         return gen_wordlist(wordlist_it)
     else:
         return wordlist_it
-        
 
+# functions to merge two lists, used as subfunction within gen_wordlist
+         
 def join_words(list1, list2):
     
     joined_list = []
@@ -36,6 +37,8 @@ def join_words(list1, list2):
             joined_list.append(word)
             
     return (joined_list)
+
+# function that generates the filename for the wordlist. The purpose is to clean the wordlist names up by default
 
 def gen_filename(list1):
     print("Generating filepath for storing wordlist ...")
@@ -49,6 +52,8 @@ def gen_filename(list1):
     
     return (filename + ".txt")
 
+# function to generate a config name, matching the concept of above. Sorry, I was lazy and just copied the thing.
+
 def gen_configname(list1):
     print("Generating filepath for storing config file ...")
     filename = "config_" + str(datetime.datetime.now())
@@ -60,6 +65,8 @@ def gen_configname(list1):
         filename = filename + "-" + str(len(element)) 
     
     return (filename + ".txt")    
+
+# function to flatten nested lists before writing to disc
 
 def flatten_list(_2d_list):
     print("Flattening input list for storage ...")
@@ -74,6 +81,8 @@ def flatten_list(_2d_list):
             flat_list.append(element)
     return flat_list
 
+# simple write file function
+
 def write_file(filename, list1):
     textfile = open(filename, "w")
     print("Writing "+ filename+" to disc ...")
@@ -83,7 +92,8 @@ def write_file(filename, list1):
         for element in list1:
             textfile.write(element + "\n")
         textfile.close()
-    
+
+
 filename_config = gen_configname(words)
 filename_wordlist = gen_filename(words)
 
@@ -93,6 +103,9 @@ wordlist = gen_wordlist(words)
 wordlist[0].append(filename_config)
 
 print ('Variants Generated: ', len(wordlist[0]))
+
+# if you want to see the generated wordlist, you can uncomment this one
+# please consider the size of the list before uncommenting
 # print ('Words found: ', wordlist[0])
 
 write_file(filename_wordlist, wordlist[0])
