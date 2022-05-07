@@ -41,7 +41,7 @@ def join_words(list1, list2):
 # function that generates the filename for the wordlist. The purpose is to clean the wordlist names up by default
 
 def gen_filename(list1):
-    print("Generating filepath for storing wordlist ...")
+    print("generating filepath for storing wordlist ...")
     filename = "wordlist_" + str(datetime.datetime.now())
     filename = filename.replace(' ','_')
     filename = filename.replace(':','-')
@@ -55,7 +55,7 @@ def gen_filename(list1):
 # function to generate a config name, matching the concept of above. Sorry, I was lazy and just copied the thing.
 
 def gen_configname(list1):
-    print("Generating filepath for storing config file ...")
+    print("generating filepath for storing config file ...")
     filename = "config_" + str(datetime.datetime.now())
     filename = filename.replace(' ','_')
     filename = filename.replace(':','-')
@@ -69,7 +69,7 @@ def gen_configname(list1):
 # function to flatten nested lists before writing to disc
 
 def flatten_list(_2d_list):
-    print("Flattening input list for storage ...")
+    print("flattening input list for storage ...")
     flat_list = []
     # Iterate through the outer list
     for element in _2d_list:
@@ -85,24 +85,25 @@ def flatten_list(_2d_list):
 
 def write_file(filename, list1):
     textfile = open(filename, "w")
-    print("Writing "+ filename+" to disc ...")
+    print("writing "+ filename+" to disc ...")
     if (any(isinstance(i, list) for i in list1)):
         write_file(filename, flatten_list(list1))
     else:
         for element in list1:
             textfile.write(element + "\n")
         textfile.close()
-
+        print("file sucessfully written ...")
+        print("open "+ filename + " to see results ...")
 
 filename_config = gen_configname(words)
 filename_wordlist = gen_filename(words)
 
 write_file(filename_config, words)
-print("Generating wordlist ...")
+print("generating wordlist ...")
 wordlist = gen_wordlist(words)
 wordlist[0].append(filename_config)
 
-print ('Variants Generated: ', len(wordlist[0]))
+print ('variants generated: ', len(wordlist[0]))
 
 # if you want to see the generated wordlist, you can uncomment this one
 # please consider the size of the list before uncommenting
