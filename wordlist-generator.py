@@ -106,8 +106,6 @@ print ('variants generated: ', len(wordlist[0]))
 print ('appending config filename to wordlist for traceback ...')
 wordlist[0].append(filename_config)
 
-
-
 # if you want to see the generated wordlist, you can uncomment this one
 # please consider the size of the list before uncommenting
 # print ('Words found: ', wordlist[0])
