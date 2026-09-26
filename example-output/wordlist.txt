@@ -1021,5 +1021,3 @@ Word4-V3
 Word5-V1
 Word5-V2
 Word5-V3
-
-config_2022-05-07_20-24-22_645108_config-4-4-4-4-4.txt
